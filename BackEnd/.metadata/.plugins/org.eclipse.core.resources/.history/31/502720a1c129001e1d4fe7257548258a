@@ -1,0 +1,32 @@
+package com.example.chamada.model.chamada;
+
+import com.example.chamada.model.aluno.Aluno;
+import com.example.chamada.model.turma.Turma;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+public class Chamada {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	private String data;
+	private boolean presenca;
+	private int identificadorGrupo;
+	
+	@ManyToOne
+	@JoinColumn(name = "turmaID")
+	private Turma turma;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "alunoID")
+	private Aluno aluno;
+
+}

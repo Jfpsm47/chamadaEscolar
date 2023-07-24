@@ -1,6 +1,10 @@
 package com.example.chamada.model.aluno;
 
+import java.util.List;
+
+import com.example.chamada.model.chamada.Chamada;
 import com.example.chamada.model.turma.Turma;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Aluno {
@@ -20,6 +25,10 @@ public class Aluno {
 	@ManyToOne
 	@JoinColumn(name = "turmaID")
 	private Turma turma;
+	
+	@OneToMany(mappedBy = "aluno")
+	@JsonIgnore
+	private List<Chamada> chamadas;
 
 	public Aluno() {
 		super();

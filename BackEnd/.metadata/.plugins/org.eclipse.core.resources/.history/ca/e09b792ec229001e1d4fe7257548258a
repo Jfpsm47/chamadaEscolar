@@ -1,0 +1,9 @@
+package com.example.chamada.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.chamada.model.chamada.Chamada;
+
+public interface ChamadaRepository extends JpaRepository<Chamada, Long>{
+
+}

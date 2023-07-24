@@ -3,6 +3,7 @@ package com.example.chamada.model.turma;
 import java.util.List;
 
 import com.example.chamada.model.aluno.Aluno;
+import com.example.chamada.model.chamada.Chamada;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -23,6 +24,10 @@ public class Turma {
 	@OneToMany(mappedBy = "turma")
 	@JsonIgnore
 	private List<Aluno> alunos;
+	
+	@OneToMany(mappedBy = "turma")
+	@JsonIgnore
+	private List<Chamada> chamadas;
 
 	public Turma() {
 		super();
