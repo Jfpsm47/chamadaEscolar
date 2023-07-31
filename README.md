@@ -1,2 +1,3 @@
 # chamadaEscolar
-Sistema de chamada para escolas, com Back-end feito no Spring boot
+Sistema de chamada para escolas
+Back-end feito no Spring boot
