@@ -18,7 +18,7 @@ public class Chamada {
 	
 	private String data;
 	private boolean presenca;
-	private int identificadorGrupo;
+	private Long identificadorGrupo;
 	
 	@ManyToOne
 	@JoinColumn(name = "turmaID")
@@ -36,7 +36,7 @@ public class Chamada {
 	}
 
 
-	public Chamada(String data, boolean presenca, int identificadorGrupo, Turma turma, Aluno aluno) {
+	public Chamada(String data, boolean presenca, Long identificadorGrupo, Turma turma, Aluno aluno) {
 		super();
 		this.data = data;
 		this.presenca = presenca;
@@ -76,12 +76,12 @@ public class Chamada {
 	}
 
 
-	public int getIdentificadorGrupo() {
+	public Long getIdentificadorGrupo() {
 		return identificadorGrupo;
 	}
 
 
-	public void setIdentificadorGrupo(int identificadorGrupo) {
+	public void setIdentificadorGrupo(Long identificadorGrupo) {
 		this.identificadorGrupo = identificadorGrupo;
 	}
 
