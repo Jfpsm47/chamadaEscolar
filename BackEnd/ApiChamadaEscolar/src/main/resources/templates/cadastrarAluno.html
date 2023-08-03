@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Aluno</title>
+    <script>
+        function mostarSelecao(){
+            const dropbox = document.getElementById('dropbox');
+            const selectedOption = dropbox.option[dropbox.selectedIndex].value
+            document.getElementById('resultado').innerText = "Selecionado: " + selectedOption;
+        }
+    </script>
+</head>
+    <body>
+
+
+    <h1>Cadastrar Aluno</h1>
+
+
+        <form>
+            <label>Nome</label>
+            <input type="text" name="nome">
+            <br>
+            <br>
+            <label>Turma</label>
+            <select id="dropbox">
+            <table>
+                <tr th:each="turma: ${turmas}">
+                    <td>
+                        <option th:text="${turma.nome}"></option>
+                    </td>
+                </tr>
+            </table>
+            </select>
+            <div id="resultado"></div>
+        </form>
+    <!--<button onclick="mostrarSelecao()"></button-->
+
+    </body>
+</html>
