@@ -7,5 +7,5 @@ import com.example.chamada.model.turma.Turma;
 
 @Repository
 public interface TurmaRepository extends JpaRepository<Turma, Long> {
-
+    Turma findByNome(String nome);
 }

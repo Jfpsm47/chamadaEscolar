@@ -12,29 +12,27 @@
     </script>
 </head>
     <body>
+        <h1>Cadastrar Aluno</h1>
 
-
-    <h1>Cadastrar Aluno</h1>
-
-
-        <form>
+        <form method="post" action="/aluno/cadastrar">
             <label>Nome</label>
             <input type="text" name="nome">
             <br>
             <br>
             <label>Turma</label>
-            <select id="dropbox">
+            <select id="dropbox" name="turmaNome">
             <table>
                 <tr th:each="turma: ${turmas}">
                     <td>
-                        <option th:text="${turma.nome}"></option>
+                        <option th:text="${turma.nome}" th:value="${turma.nome}"></option>
                     </td>
                 </tr>
             </table>
             </select>
             <div id="resultado"></div>
+            <br>
+            <br>
+            <button type="submit">Enviar</button>
         </form>
-    <!--<button onclick="mostrarSelecao()"></button-->
-
     </body>
 </html>

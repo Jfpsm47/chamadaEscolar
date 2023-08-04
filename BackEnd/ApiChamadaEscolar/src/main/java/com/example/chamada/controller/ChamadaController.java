@@ -11,7 +11,10 @@ import com.example.chamada.repository.TurmaRepository;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -21,7 +24,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-@RestController
+@Controller
 @RequestMapping("/chamada")
 public class ChamadaController {
     @Autowired
@@ -31,9 +34,19 @@ public class ChamadaController {
     @Autowired
     AlunoRepository alunoRepository;
 
-    @PostMapping("/cadastrar/{turmaID}")
-    public ResponseEntity addChamada(@RequestBody ArrayList<AlunoPresencaDTO> listAlunoPresenca, @PathVariable Long turmaID) throws ParseException {
-        Random generator = new Random();
+    @PostMapping("/cadastrar")
+    public ModelAndView homeChamada(Long id, Model model){
+        AlunoPresencaDTO listAlunoPresenca = new AlunoPresencaDTO();
+        model.addAttribute("listAlunoPresenca",listAlunoPresenca);
+        Turma turma = turmaRepository.findById(id).get();
+        ModelAndView mv = new ModelAndView("cadastrarChamada");
+        mv.addObject("turma",turma);
+        mv.addObject("alunos",alunoRepository.findByTurma(turma));
+        return mv;
+    }
+    @PostMapping("/cadastrar/add")
+    public ResponseEntity addChamada( @ModelAttribute AlunoPresencaDTO listAlunoPresenca) throws ParseException {
+        /*Random generator = new Random();
         Long idGrupo = generator.nextLong();
         for (AlunoPresencaDTO alunoPresenca: listAlunoPresenca) {
             Aluno aluno = alunoRepository.findByNome(alunoPresenca.nome());
@@ -44,7 +57,7 @@ public class ChamadaController {
             Chamada chamada = new Chamada(dateFormat,alunoPresenca.presenca(),idGrupo,turma,aluno);
 
             repository.save(chamada);
-        }
+        }*/
         return ResponseEntity.ok().build();
     }
     @GetMapping("/listar")

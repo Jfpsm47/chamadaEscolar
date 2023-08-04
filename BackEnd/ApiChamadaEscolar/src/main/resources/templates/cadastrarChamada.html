@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Chamada</title>
+</head>
+  <body>
+    <span>Chamada da <h1 th:text="${turma.nome}"></h1></span>
+    <form method="post" action="/chamada/cadastrar/add">
+        <table>
+            <tr th:each="aluno: ${alunos}">
+                <td>
+                    <input type="hidden" th:name="nome" th:value="${aluno.nome}" />
+                    <span th:text="${aluno.nome}"></span>
+                    <br>
+                    <label>Presente</label>
+                    <input type="radio" th:name="presensa + ${aluno.id}" value="true" />
+                    <label>Faltoso</label>
+                    <input type="radio" th:name="presensa + ${aluno.id}"  value="false" />
+                    <br>
+                    <br>
+                </td>
+            </tr>
+        </table>
+        <button type="submit">Cadastrar</button>
+    </form>
+
+  </body>
+</html>

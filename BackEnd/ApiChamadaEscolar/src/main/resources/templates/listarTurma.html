@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Turmas</title>
+</head>
+<body>
+    <h1>Lista de Turmas</h1>
+
+    <table>
+        <tr th:each="turma : ${turmas}">
+            <td><h3><a th:href="@{'/turma/listar/' + ${turma.id}}" th:text="${turma.nome}"></a></h3></td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -37,12 +37,12 @@ public class AlunoController {
 		return mv;
 	}
 	@PostMapping("/cadastrar")
-	public ResponseEntity cadastrar(AlunoDTO data ) {
-		Turma turma = turmaRepository.findById(data.turmaID()).get();	
+	public String cadastrar(AlunoDTO data ) {
+		Turma turma = turmaRepository.findByNome(data.turmaNome());
 		Aluno aluno = new Aluno(data.nome(),turma);
-		
+		String turmaID = turma.getId().toString();
 		repository.save(aluno);
 		
-		return ResponseEntity.ok().build();
+		return "redirect:/turma/listar/"+turmaID;
 	}
 }
