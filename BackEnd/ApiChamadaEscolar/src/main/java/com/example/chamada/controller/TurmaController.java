@@ -30,4 +30,5 @@ public class TurmaController {
 		
 		return ResponseEntity.ok("Turma cadastrada com sucesso!");
 	}
+
 }

@@ -2,17 +2,15 @@ package com.example.chamada.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.chamada.model.aluno.Aluno;
 import com.example.chamada.model.aluno.AlunoDTO;
 import com.example.chamada.model.turma.Turma;
 import com.example.chamada.repository.AlunoRepository;
 import com.example.chamada.repository.TurmaRepository;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/aluno")
@@ -36,5 +34,11 @@ public class AlunoController {
 		repository.save(aluno);
 		
 		return ResponseEntity.ok().build();
+	}
+	@GetMapping("/listar/{turmaID}")
+	public ResponseEntity listarAlunosPorTurma(@PathVariable Long turmaID){
+		Optional<Turma> turma =  turmaRepository.findById(turmaID);
+
+		return ResponseEntity.ok(repository.findByTurma(turma.get()));
 	}
 }

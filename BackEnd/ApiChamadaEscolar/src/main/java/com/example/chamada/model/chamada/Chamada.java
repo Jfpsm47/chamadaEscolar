@@ -1,14 +1,13 @@
 package com.example.chamada.model.chamada;
 
 import com.example.chamada.model.aluno.Aluno;
+import com.example.chamada.model.aluno.AlunoPresenca;
 import com.example.chamada.model.turma.Turma;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Chamada {
@@ -25,9 +24,9 @@ public class Chamada {
 	private Turma turma;
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "alunoID")
-	private Aluno aluno;
+	@OneToMany(mappedBy = "chamadas")
+	@JsonIgnore
+	private List<AlunoPresenca> alunoPresenca;
 
 
 	
@@ -36,13 +35,11 @@ public class Chamada {
 	}
 
 
-	public Chamada(String data, boolean presenca, Long identificadorGrupo, Turma turma, Aluno aluno) {
+	public Chamada(String data, boolean presenca, Turma turma) {
 		super();
 		this.data = data;
 		this.presenca = presenca;
-		this.identificadorGrupo = identificadorGrupo;
 		this.turma = turma;
-		this.aluno = aluno;
 	}
 
 
@@ -96,13 +93,13 @@ public class Chamada {
 	}
 
 
-	public Aluno getAluno() {
-		return aluno;
+	public List<AlunoPresenca> getAluno() {
+		return alunoPresenca;
 	}
 
 
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
+	public void setAluno(List<AlunoPresenca> aluno) {
+		this.alunoPresenca = aluno;
 	}
 	
 	

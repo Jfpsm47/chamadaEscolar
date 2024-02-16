@@ -25,10 +25,12 @@ public class Aluno {
 	@ManyToOne
 	@JoinColumn(name = "turmaID")
 	private Turma turma;
-	
+
 	@OneToMany(mappedBy = "aluno")
 	@JsonIgnore
-	private List<Chamada> chamadas;
+	private List<AlunoPresenca> alunoPresenca;
+
+
 
 	public Aluno() {
 		super();
