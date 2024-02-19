@@ -2,6 +2,7 @@ package com.example.chamada.model.aluno;
 
 import java.util.List;
 
+import com.example.chamada.model.AlunoChamada;
 import com.example.chamada.model.chamada.Chamada;
 import com.example.chamada.model.turma.Turma;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,9 +29,7 @@ public class Aluno {
 
 	@OneToMany(mappedBy = "aluno")
 	@JsonIgnore
-	private List<AlunoPresenca> alunoPresenca;
-
-
+	private List<AlunoChamada> alunoChamada;
 
 	public Aluno() {
 		super();
